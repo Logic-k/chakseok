@@ -1,0 +1,49 @@
+{
+  "$schema": "https://schema.tauri.app/config/2.8.0",
+  "productName": "착석",
+  "version": "1.0.0",
+  "identifier": "kr.education.chakseok",
+  "build": {
+    "beforeDevCommand": "pnpm dev",
+    "devUrl": "http://127.0.0.1:1420",
+    "beforeBuildCommand": "pnpm build",
+    "frontendDist": "../dist"
+  },
+  "app": {
+    "windows": [
+      {
+        "title": "착석 — 고사실 자리배치·시험시간표 자동 생성",
+        "width": 1280,
+        "height": 860,
+        "minWidth": 1024,
+        "minHeight": 700,
+        "resizable": true,
+        "fullscreen": false
+      }
+    ],
+    "security": {
+      "csp": "default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; font-src 'self' data:; script-src 'self'; connect-src 'none'"
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": "all",
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/icon.ico"
+    ],
+    "windows": {
+      "nsis": {
+        "installMode": "currentUser",
+        "languages": ["Korean"]
+      }
+    },
+    "copyright": "",
+    "category": "Productivity",
+    "shortDescription": "고사실 자리배치·시험시간표 자동 생성",
+    "longDescription": "학생 명렬표를 가져와 고사실 자리배치와 학생별 시험시간표를 자동 생성하고 한글/워드/PDF/엑셀로 내보내는 완전 오프라인 데스크톱 프로그램"
+  }
+}
