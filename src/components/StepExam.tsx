@@ -64,9 +64,27 @@ export default function StepExam() {
           </button>
         </div>
         {exam.periods.length === 0 ? (
-          <p className="p-6 text-center text-[13px] text-slate-400">
-            교시를 추가하세요 — 예: 1교시 국어(공통), 2교시 선택과목
-          </p>
+          <div className="p-6 text-center">
+            <p className="mb-3 text-[13px] text-slate-400">
+              교시를 추가하세요 — 예: 1교시 국어(공통), 2교시 선택과목
+            </p>
+            <button
+              onClick={() =>
+                update({
+                  title: exam.title || "2026학년도 1학기 중간고사",
+                  date: exam.date || "2026-04-28",
+                  periods: [
+                    { id: "p1", order: 1, label: "1교시", time: "09:00~10:00", kind: "common", subject: "국어" },
+                    { id: "p2", order: 2, label: "2교시", time: "10:20~11:20", kind: "elective", electiveKey: electiveColumns[0]?.key ?? "" },
+                    { id: "p3", order: 3, label: "3교시", time: "11:40~12:40", kind: "common", subject: "영어" },
+                  ],
+                })
+              }
+              className="rounded-lg bg-slate-100 px-4 py-2 text-[12px] font-semibold text-slate-700 hover:bg-slate-200"
+            >
+              예시 구성 불러오기 (국어·선택과목·영어)
+            </button>
+          </div>
         ) : (
           <table className="w-full text-[13px]">
             <thead className="bg-slate-50 text-slate-500">

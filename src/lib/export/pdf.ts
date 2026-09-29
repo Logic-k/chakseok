@@ -1,4 +1,5 @@
 import { PDFDocument, PDFFont, PDFPage, rgb } from "pdf-lib";
+import fontkit from "@pdf-lib/fontkit";
 import { layoutsWithAssignments } from "../assign";
 import { studentTimetable } from "../timetable";
 import { maskName } from "../format";
@@ -20,6 +21,7 @@ interface Fonts {
 }
 
 async function loadFonts(doc: PDFDocument): Promise<Fonts> {
+  doc.registerFontkit(fontkit);
   const [regBytes, boldBytes] = await Promise.all([
     fetch(fontRegularUrl).then((r) => r.arrayBuffer()),
     fetch(fontBoldUrl).then((r) => r.arrayBuffer()),

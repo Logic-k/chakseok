@@ -180,7 +180,7 @@ export default function StepAssign() {
                         if (s) togglePin(layout.room.id, cell.row, cell.col);
                       }}
                       title={s ? `${s.name} ${studentLabel(s)} — 드래그: 자리 교환 / 우클릭: 고정` : "빈 좌석 — 학생을 끌어다 놓으세요"}
-                      className={`relative flex h-14 cursor-${s ? "grab" : "default"} flex-col items-center justify-center rounded-lg border text-center leading-tight transition-colors ${
+                      className={`relative flex h-14 ${s ? "cursor-grab" : "cursor-default"} flex-col items-center justify-center rounded-lg border text-center leading-tight transition-colors ${
                         s
                           ? pinned
                             ? "border-amber-400 bg-amber-50"
