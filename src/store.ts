@@ -97,7 +97,19 @@ export const useApp = create<AppState>()(
           pb.row = a.row;
           pb.col = a.col;
         }
-        set({ assignment: { ...assignment, placements: [...assignment.placements] } });
+        const options = get().options;
+        let pinned = options.pinned;
+        for (const p of [pa, pb]) {
+          const key = p ? `${p.roomId}:${p.row}:${p.col}` : null;
+          if (p && p.studentId && pinned[p.studentId] && pinned[p.studentId] !== key) {
+            if (pinned === options.pinned) pinned = { ...pinned };
+            pinned[p.studentId] = key!;
+          }
+        }
+        set({
+          assignment: { ...assignment, placements: [...assignment.placements] },
+          ...(pinned === options.pinned ? {} : { options: { ...options, pinned } }),
+        });
       },
 
       clearAssignment: () => set({ assignment: null }),
