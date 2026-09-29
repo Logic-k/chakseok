@@ -26,12 +26,12 @@ jobs:
         uses: tauri-apps/tauri-action@v0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload installer
+        uses: actions/upload-artifact@v4
         with:
-          tagName: v__VERSION__
-          releaseName: "착석 v__VERSION__"
-          releaseBody: "고사실 자리배치·시험시간표 자동 생성 (교육-003)"
-          releaseDraft: true
-          prerelease: false
+          name: chakseok-setup
+          path: src-tauri/target/release/bundle/nsis/*.exe
 
   build-linux:
     runs-on: ubuntu-22.04
